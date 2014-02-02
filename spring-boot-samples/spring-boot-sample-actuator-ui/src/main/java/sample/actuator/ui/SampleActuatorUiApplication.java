@@ -16,34 +16,17 @@
 
 package sample.actuator.ui;
 
-import java.util.Date;
-import java.util.Map;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@Controller
 public class SampleActuatorUiApplication {
-
-	@RequestMapping("/")
-	public String home(Map<String, Object> model) {
-		model.put("message", "Hello World");
-		model.put("title", "Hello Home");
-		model.put("date", new Date());
-		return "home";
-	}
-
-	@RequestMapping("/foo")
-	public String foo() {
-		throw new RuntimeException("Expected exception in controller");
-	}
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SampleActuatorUiApplication.class, args);

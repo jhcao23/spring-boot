@@ -13,23 +13,39 @@
 
 package sample.ui;
 
+import java.io.Serializable;
 import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Rob Winch
  */
-public class Message {
+@Entity
+public class Message implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
 	private Long id;
 
 	@NotEmpty(message = "Message is required.")
+	@Column(nullable = false)
 	private String text;
 
 	@NotEmpty(message = "Summary is required.")
+	@Column(nullable = false)
 	private String summary;
 
+	@Temporal(TemporalType.DATE)
 	private Calendar created = Calendar.getInstance();
 
 	public Long getId() {
